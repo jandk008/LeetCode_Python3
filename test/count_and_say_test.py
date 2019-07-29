@@ -3,7 +3,7 @@ import pytest
 from leetcode.count_and_say import Solution
 
 
-@pytest.fixture(scope='function', autouse=True)
+@pytest.fixture(autouse=True)
 def solution():
     yield Solution()
 
