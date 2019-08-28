@@ -15,6 +15,5 @@ def test_none_empty_list_node_creation(nums: list):
     assert len(generated_list) == len(nums)
 
 
-@pytest.mark.parametrize("nums", [()])
-def test_empty_list_node_creation(nums: list):
-    assert ListNode.fromlist(nums) is None
+def test_empty_list_node_creation():
+    assert ListNode.fromlist([]) is None

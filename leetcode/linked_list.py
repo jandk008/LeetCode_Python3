@@ -23,7 +23,7 @@ class ListNode(object):
 
     def __eq__(self, o: object) -> bool:
         return isinstance(o, type(self)) \
-               and self.val == o.val and self._next == o._next
+               and (self.val, self.next) == (o.val, o._next)
 
     def __hash__(self) -> int:
         return hash((self.val, self._next))
