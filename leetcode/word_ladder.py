@@ -1,4 +1,4 @@
-import collections
+from collections import deque
 
 
 class Solution(object):
@@ -6,7 +6,7 @@ class Solution(object):
         if end_word not in word_list:
             return 0
         length = len(begin_word)
-        queue = collections.deque()
+        queue = deque()
         queue.append((begin_word, 1))
         visited = {begin_word: True}
         while queue:
