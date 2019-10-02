@@ -17,10 +17,15 @@ class TreeNode(object):
         else:
             return None
 
-    def __eq__(self, other):
+    def __eq__(self, other) -> bool:
         return isinstance(other, type(self))\
                and (self.val, self.left, self.right) ==\
                    (other.val, other.left, other.right)
 
     def __hash__(self) -> int:
         return hash((self.val, self.left, self.right))
+
+    def __repr__(self) -> str:
+        if self is None:
+            return ""
+        return f'{self.val} {repr(self.left)} {repr(self.right)}'
