@@ -9,10 +9,10 @@ class Solution:
             if p[j] == s[i]:
                 j += 1
                 i += 1
+            elif j == 0:
+                i += 1
             else:
                 j = lps[j]
-                if j == 0:
-                    i += 1
             if j == m:
                 return i - m  # return starting index of matched pattern
         return -1
@@ -26,10 +26,9 @@ class Solution:
                 length += 1
                 i += 1  # lps shifting index by 1, update index first
                 lps[i] = length
+            elif length == 0:
+                i += 1
             else:
                 # get the maximum length of last matched letter
                 length = lps[length]
-                if length == 0:
-                    i += 1
-                    lps[i] = 0
         return lps
