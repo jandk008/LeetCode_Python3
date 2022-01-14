@@ -8,7 +8,7 @@ class Solution(object):
 
         n, m = len(heights), len(heights[0])
         heap = []
-        visited = [[False for col in range(m)] for row in range(n)]
+        visited = [[False for _ in range(m)] for _ in range(n)]
 
         for col in range(m):
             heapq.heappush(heap, (heights[0][col], 0, col))

@@ -1,7 +1,7 @@
 from leetcode.binary_tree import TreeNode
 
 
-class Solution(object):
+class Solution:
     def insert(self, root: TreeNode, node: int) -> TreeNode:
         if not root:
             return TreeNode(node)
@@ -21,12 +21,11 @@ class Solution(object):
         if root.val == node:
             if root.left is None and root.right is None:
                 return None
-            elif bool(root.right is None) ^ bool(root.left is None):
+            if bool(root.right is None) ^ bool(root.left is None):
                 return root.right if root.left is None else root.left
-            else:
-                successor = self.find_successor(root.right)
-                root.val = successor.val
-                root.right = self.delete(root.right, successor.val)
+            successor = self.find_successor(root.right)
+            root.val = successor.val
+            root.right = self.delete(root.right, successor.val)
         elif root.val < node:
             root.right = self.delete(root.right, node)
         else:
@@ -36,17 +35,13 @@ class Solution(object):
         balance_factor = self.get_balance(root)
 
         if balance_factor < -1:
-            if self.get_balance(root.left) <= 0:
-                root = self.right_rotation(root)
-            else:
+            if self.get_balance(root.left) > 0:
                 root.left = self.left_rotation(root.left)
-                root = self.right_rotation(root)
+            root = self.right_rotation(root)
         elif balance_factor > 1:
-            if self.get_balance(root.right) >= 0:
-                root = self.left_rotation(root)
-            else:
+            if self.get_balance(root.right) < 0:
                 root.right = self.right_rotation(root.right)
-                root = self.left_rotation(root)
+            root = self.left_rotation(root)
         return root
 
     def get_balance(self, root):

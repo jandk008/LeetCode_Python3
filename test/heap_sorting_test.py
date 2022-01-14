@@ -1,5 +1,6 @@
 import pytest
 
+from leetcode.binary_tree import TreeNode
 from leetcode.heap_sorting import Solution
 
 
@@ -19,3 +20,37 @@ def solution():
 def test_quick_sorting(solution: Solution, nums: list, expected: list):
     solution.sort(nums)
     assert nums == expected
+
+
+@pytest.mark.parametrize('root, expected', [
+    (TreeNode.fromlist([1, 2, 3, 4, 5, 6]), [1, 2, 4, 5, 3, 6]),
+    (TreeNode.fromlist([1, 2, 3, 6, None, 4, 5]), [1, 2, 6, 3, 4, 5])])
+def test_preorder(root: TreeNode, expected: list):
+    assert preOrder(root) == expected
+
+
+@pytest.mark.parametrize('root, expected', [
+    (TreeNode.fromlist([1, 2, 3, 4, 5, 6]), [4, 2, 5, 1, 6, 3]),
+    (TreeNode.fromlist([1, 2, 3, 6, None, 4, 5]), [6, 2, 1, 4, 3, 5])])
+def test_inorder(root: TreeNode, expected: list):
+    assert inOrder(root) == expected
+
+
+@pytest.mark.parametrize('root, expected', [
+    (TreeNode.fromlist([1, 2, 3, 4, 5, 6]), [4, 5, 2, 6, 3, 1]),
+    (TreeNode.fromlist([1, 2, 3, 6, None, 4, 5]), [6, 2, 4, 5, 3, 1])])
+def test_inorder(root: TreeNode, expected: list):
+    assert postOrder(root) == expected
+
+
+def plus(x, y):
+    return plus(x ^ y, (x & y) << 1) if y else x
+
+
+def test():
+    print(plus(-1,2))
+    s = "catsanddog"
+    s.strip()
+    w = ["This", "is", "an", "example", "of", "text", "justification."]
+    a = [[1,2], [3,4], [5,6]]
+    b = [x + [0] for x in a]

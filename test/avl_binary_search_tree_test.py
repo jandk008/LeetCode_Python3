@@ -1,6 +1,6 @@
 import pytest
 
-from leetcode.avl_binary_search_tree import Solution
+from leetcode.temp_avl_binary_search_tree import Solution
 from leetcode.binary_tree import TreeNode
 
 

@@ -1,3 +1,5 @@
+import math
+
 import pytest
 
 from leetcode.binary_tree import TreeNode
@@ -20,3 +22,22 @@ def solution():
                            TreeNode.fromlist([1]))])
 def test_merge_binary_tree(solution: Solution, t1, t2, expected):
     assert solution.merge_binary_tree(t1, t2) == expected
+
+
+def test():
+    foo(2, t=2, name='hi')
+    a = [1, 2, 3]
+    b = [3, 4, 5]
+    print([*a, *b])
+    assert gcd(24, 16) == 8
+    assert math.sqrt(9) == 3
+
+
+def foo(k, *, t, name=None):
+    print(f'k: {k}, t: {t}, name: {name}')
+
+
+def gcd(x, y):
+    while y:
+        x, y = y, x % y
+    return x

@@ -1,13 +1,15 @@
 class Solution:
     def sort(self, nums: list):
+        n = len(nums)
         self._construct(nums)
-        for _ in range(len(nums))[::-1]:
-            nums[_], nums[0] = nums[0], nums[_]
-            self._heapify(nums, 0, _)
+        for pos in range(n - 1, -1, -1):
+            nums[pos], nums[0] = nums[0], nums[pos]
+            self._heapify(nums, 0, pos)
 
     def _construct(self, nums):
-        for _ in range(len(nums))[::-1]:
-            self._heapify(nums, _, len(nums))
+        n = len(nums)
+        for i in range(n - 1, -1, -1):
+            self._heapify(nums, i, n)
 
     def _heapify(self, nums, index, end):
         swap_index = index
