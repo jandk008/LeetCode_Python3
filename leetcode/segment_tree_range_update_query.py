@@ -76,3 +76,13 @@ class SegmentTree:
       self.tree[i] = self.lazy[i] * k
     else:
       self.tree[i] = self.tree[i << 1] + self.tree[i << 1 | 1]
+ 
+  # simply change apply() and calculation() to below if we need increment modification
+  def apply_inc(self, i, value, k):
+    self.tree[i] += value * k
+    if i < self.n:
+      self.lazy[i] += value
+      
+  def calculation_inc(self, i, k):
+    self.tree[i] = self.tree[i << 1] + self.tree[i << 1 | 1] + self.lazy[i] * k
+     
