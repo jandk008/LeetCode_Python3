@@ -13,7 +13,7 @@ class Solution:
         else:
             return root
 
-        return self.rotate(root, node)
+        return self.rotate(root)
 
     def delete(self, root: TreeNode, node: int) -> TreeNode or None:
         if not root:
@@ -31,9 +31,14 @@ class Solution:
         else:
             root.left = self.delete(root.left, node)
 
+        return self.rotate(root)
+
+    def get_balance(self, root):
+        return self.get_height(root.right) - self.get_height(root.left)
+
+    def rotate(self, root):
         root.height = self.update_height(root)
         balance_factor = self.get_balance(root)
-
         if balance_factor < -1:
             if self.get_balance(root.left) > 0:
                 root.left = self.left_rotation(root.left)
@@ -42,26 +47,6 @@ class Solution:
             if self.get_balance(root.right) < 0:
                 root.right = self.right_rotation(root.right)
             root = self.left_rotation(root)
-        return root
-
-    def get_balance(self, root):
-        return self.get_height(root.right) - self.get_height(root.left)
-
-    def rotate(self, root, node):
-        root.height = self.update_height(root)
-        balance_factor = self.get_balance(root)
-        if balance_factor < -1:
-            if node < root.left.val:
-                root = self.right_rotation(root)
-            else:
-                root.left = self.left_rotation(root.left)
-                root = self.right_rotation(root)
-        elif balance_factor > 1:
-            if node > root.right.val:
-                root = self.left_rotation(root)
-            else:
-                root.right = self.right_rotation(root.right)
-                root = self.left_rotation(root)
         return root
 
     @staticmethod
